@@ -12,7 +12,6 @@ let modeButtons = document.querySelectorAll('.mode')
 init()
 
 function init(){
-  resetGame(6)
   pickedColor = pickRandColor()
   colorDisplay.textContent = pickedColor
   for(let i = 0; i < modeButtons.length; i++){
@@ -24,6 +23,7 @@ function init(){
       resetGame((i+1)*3)
     })
   }
+  resetGame(6)
   for(let i = 0; i < squareArr.length; i++){
     //add initial colors to the squares
     squareArr[i].style.backgroundColor = colors[i]
@@ -42,6 +42,8 @@ function init(){
           buttons[i].style.color = clickedColor
         }
         restartBtn.textContent = 'Play Again?'
+        document.querySelector('.selected').style.backgroundColor = pickedColor
+        document.querySelector('.selected').style.color = 'white'
       }
       else{
         //hide the square with a fade out
@@ -110,10 +112,13 @@ function resetGame(num){
   }
   header.style.backgroundColor = '#2359AB'
   for(let i=0; i<buttons.length; i++){
+    buttons[i].style.background = 'transparent'
     buttons[i].style.color = '#2359AB'
   }
   pickedColor = pickRandColor()
   colorDisplay.textContent = pickedColor
   document.querySelector('#message').textContent = ''
   restartBtn.textContent = 'New Colors'
+  document.querySelector('.selected').style.background = '#2359AB'
+  document.querySelector('.selected').style.color = '#fff'
 }
